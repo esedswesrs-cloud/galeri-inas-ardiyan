@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GALERI PROYEK</title>
+<meta name="description" content="Galeri semua web buatan Nur Inasari & Ardiyan: VNTranslate, Downloader Pribadi, Auto Clipper, dan Channel SEO. Gratis, tanpa instalasi.">
+<style>
+  :root{
+    --bg:#070b16; --bg2:#0a0f1e; --panel:#101828; --panel2:#0d1424; --line:#1e2a44;
+    --txt:#f1f5f9; --dim:#94a3b8; --cyan:#22d3ee; --violet:#a855f7; --accent:#8b5cf6;
+    --ok:#34d399; --err:#f87171;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased; min-height:100vh; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(600px 400px at 85% -5%, rgba(168,85,247,.18), transparent 60%),
+      radial-gradient(500px 350px at 5% 20%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(700px 500px at 50% 110%, rgba(139,92,246,.12), transparent 60%);
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px;}
+  a{color:inherit; text-decoration:none;}
+  .grad{background:linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .eyebrow{font-size:12px; font-weight:800; letter-spacing:2.5px; color:var(--cyan); text-transform:uppercase;}
+  h1{font-size:52px; line-height:1.08; font-weight:900; letter-spacing:-1px;}
+  h2{font-size:34px; line-height:1.15; font-weight:900; letter-spacing:-.5px;}
+  .sub{color:var(--dim); font-size:16px; line-height:1.65;}
+  section{padding:72px 0;}
+  .sec-head{max-width:640px; margin-bottom:36px;}
+  .sec-head h2{margin:10px 0 12px;}
+  /* header */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(7,11,22,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; gap:28px; height:64px;}
+  .logo{font-size:19px; font-weight:900; letter-spacing:1px; line-height:1.05; white-space:nowrap;}
+  .logo small{display:block; font-size:10px; letter-spacing:3px; color:var(--dim); font-weight:700;}
+  .logo b{color:var(--violet);}
+  .logo .c1{color:var(--cyan);}
+  .logo .c2{color:var(--violet);}
+  nav.menu{display:flex; gap:24px; margin-left:12px;}
+  nav.menu a{font-size:14.5px; color:var(--dim); font-weight:600; padding:8px 13px; border-radius:999px; transition:color .15s, background .2s;}
+  nav.menu a:hover{color:var(--txt);}
+  nav.menu a.on{color:#fff; background:linear-gradient(90deg, var(--cyan), var(--violet)); font-weight:800; box-shadow:0 4px 16px rgba(34,211,238,.3);}
+  .nav-cta{margin-left:auto;}
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px 24px; border-radius:999px; font-size:15px; font-weight:800; cursor:pointer;
+    border:none; color:#fff; background:linear-gradient(90deg, var(--cyan), var(--violet));
+    box-shadow:0 6px 24px rgba(139,92,246,.35); transition:transform .1s, box-shadow .2s;
+    white-space:nowrap;
+  }
+  .btn:hover{box-shadow:0 8px 30px rgba(139,92,246,.5);}
+  .btn:active{transform:translateY(1px);}
+  .btn-ghost{
+    background:transparent; color:var(--txt); border:1px solid var(--line); box-shadow:none;
+  }
+  .btn-ghost:hover{border-color:var(--accent); background:rgba(139,92,246,.08);}
+  .btn-sm{padding:10px 18px; font-size:14px;}
+  /* hero */
+  .hero{padding:64px 0 48px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center;}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700;
+    border:1px solid var(--line); background:var(--panel2); color:var(--dim);
+    padding:8px 14px; border-radius:999px; margin-bottom:20px;
+  }
+  .badge i{width:8px; height:8px; border-radius:50%; background:var(--ok); display:inline-block;}
+  .hero h1{margin-bottom:16px;}
+  .hero .sub{margin-bottom:24px; max-width:520px;}
+  .checks{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-bottom:28px;}
+  .checks div{font-size:14.5px; font-weight:600; display:flex; gap:8px; align-items:center;}
+  .checks span{color:var(--ok); font-weight:900;}
+  .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:22px;}
+  .proof{font-size:13.5px; color:var(--dim); display:flex; align-items:center; gap:10px;}
+  .avatars{display:flex;}
+  .avatars b{
+    width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:11px; background:linear-gradient(135deg, var(--cyan), var(--violet)); border:2px solid var(--bg);
+    margin-left:-8px;
+  }
+  .avatars b:first-child{margin-left:0;}
+  .stars{color:#fbbf24; letter-spacing:2px;}
+  /* slideshow poster */
+  .show{
+    position:relative; border-radius:20px; overflow:hidden; cursor:pointer;
+    border:1px solid var(--line); box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(139,92,246,.15);
+    background:var(--panel2); aspect-ratio:16/10;
+  }
+  .show img{width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:opacity .4s;}
+  .show .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:36px 16px 14px;
+    background:linear-gradient(transparent, rgba(4,7,15,.92));
+    display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+  }
+  .show .cap b{font-size:16px; display:block;}
+  .show .cap span{font-size:12.5px; color:var(--dim);}
+  .show .chip-float{
+    position:absolute; top:14px; left:14px; font-size:12px; font-weight:800;
+    background:rgba(7,11,22,.75); border:1px solid var(--line); backdrop-filter:blur(6px);
+    padding:7px 12px; border-radius:999px;
+  }
+  .show .nav-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(7,11,22,.7); color:var(--txt); font-size:16px; cursor:pointer; backdrop-filter:blur(6px);
+  }
+  .show .nav-arrow:hover{background:rgba(139,92,246,.5);}
+  .show .prev{left:12px;} .show .next{right:12px;}
+  .dots{position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:2;}
+  .dots i{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); cursor:pointer; transition:all .2s;}
+  .dots i.on{width:22px; background:#fff;}
+  .show .cap{padding-bottom:34px;}
+  /* ticker */
+  .ticker{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0; background:var(--bg2);}
+  .ticker-track{display:flex; gap:0; white-space:nowrap; animation:tick 28s linear infinite; width:max-content;}
+  .ticker-track span{font-size:14px; font-weight:700; letter-spacing:1.5px; color:var(--dim); padding:0 18px;}
+  .ticker-track span b{color:var(--cyan);}
+  @keyframes tick{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  /* cards */
+  .grid4{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+    display:flex; flex-direction:column; transition:border-color .2s, transform .2s;
+  }
+  .card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .shot{aspect-ratio:16/9; overflow:hidden; background:var(--panel2); position:relative; cursor:pointer;}
+  .shot img{width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .3s;}
+  .card:hover .shot img{transform:scale(1.03);}
+  .shot .tag{
+    position:absolute; top:12px; left:12px; font-size:11.5px; font-weight:800; letter-spacing:1px;
+    background:rgba(7,11,22,.8); border:1px solid var(--line); padding:6px 10px; border-radius:999px; backdrop-filter:blur(6px);
+  }
+  .card-body{padding:20px; display:flex; flex-direction:column; gap:12px; flex:1;}
+  .card-body h3{font-size:21px; font-weight:800;}
+  .card-body h3 small{color:var(--dim); font-size:13px; font-weight:600; display:block; margin-top:3px;}
+  .feats{list-style:none; display:flex; flex-direction:column; gap:7px; font-size:14px; color:var(--dim);}
+  .feats li::before{content:"✓ "; color:var(--ok); font-weight:900;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font-size:12px; font-weight:700; border:1px solid var(--line); background:var(--panel2);
+    color:var(--dim); padding:5px 10px; border-radius:999px;
+  }
+  .chip.ai{border-color:rgba(168,85,247,.5); color:#d8b4fe;}
+  .card-cta{display:flex; gap:10px; margin-top:auto; padding-top:6px;}
+  .card-cta .btn{flex:1;}
+  /* model ai */
+  .grid-models{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .mcard{
+    background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:20px;
+    transition:border-color .2s, transform .2s;
+  }
+  .mcard:hover{border-color:var(--accent); transform:translateY(-3px);}
+  .mcard .m-ic{font-size:26px; margin-bottom:12px;}
+  .mcard h3{font-size:18px; margin-bottom:4px;}
+  .mcard .m-cat{font-size:12px; font-weight:800; letter-spacing:1.5px; color:var(--cyan); text-transform:uppercase; margin-bottom:8px;}
+  .mcard p{font-size:14px; color:var(--dim); line-height:1.6; margin-bottom:12px;}
+  .mcard .used{font-size:12.5px; color:var(--dim);}
+  .mcard .used b{color:var(--txt);}
+  /* manfaat strip */
+  .strip{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:0;
+    border:1px solid var(--line); border-radius:18px; background:var(--panel); overflow:hidden;
+  }
+  .strip div{padding:22px 16px; text-align:center; border-left:1px solid var(--line);}
+  .strip div:first-child{border-left:none;}
+  .strip .s-ic{font-size:24px; margin-bottom:8px;}
+  .strip b{display:block; font-size:14.5px; margin-bottom:4px;}
+  .strip span{font-size:12.5px; color:var(--dim); line-height:1.5; display:block;}
+  /* contoh gallery */
+  .grid-gal{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .gal{border-radius:18px; overflow:hidden; border:1px solid var(--line); cursor:pointer; position:relative; background:var(--panel2);}
+  .gal img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top; display:block; transition:transform .3s;}
+  .gal:hover img{transform:scale(1.03);}
+  .gal .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:28px 14px 12px;
+    background:linear-gradient(transparent, rgba(4,7,15,.92)); font-weight:700; font-size:15px;
+  }
+  .gal .cap span{display:block; font-size:12.5px; color:var(--dim); font-weight:500;}
+  /* bantuan */
+  .help-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;}
+  .faq details{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin-bottom:12px;
+  }
+  .faq summary{font-weight:700; font-size:15.5px; cursor:pointer; list-style:none;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq p{color:var(--dim); font-size:14.5px; line-height:1.65; margin-top:10px;}
+  form .fld{margin-bottom:14px;}
+  label{display:block; font-size:13.5px; color:var(--dim); margin-bottom:6px; font-weight:600;}
+  input[type=text], input[type=email], select, textarea{
+    width:100%; background:var(--panel2); border:1px solid var(--line); color:var(--txt);
+    border-radius:10px; padding:12px; font-size:16px; outline:none; font-family:inherit;
+  }
+  textarea{min-height:120px; resize:vertical; line-height:1.5;}
+  input:focus, select:focus, textarea:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(139,92,246,.18);}
+  .hint{font-size:12.5px; color:var(--dim); margin-top:10px; line-height:1.5;}
+  .msg{font-size:13.5px; margin-top:12px; line-height:1.5;}
+  .msg.ok{color:var(--ok);}
+  /* cta akhir */
+  .final{
+    text-align:center; padding:72px 20px; border:1px solid var(--line); border-radius:24px;
+    background:radial-gradient(500px 260px at 50% 0%, rgba(139,92,246,.22), transparent 70%), var(--panel);
+  }
+  .final h2{margin:10px 0 12px;}
+  .final .sub{max-width:520px; margin:0 auto 26px;}
+  /* footer */
+  footer{border-top:1px solid var(--line); padding:22px 0 28px; background:var(--bg2);}
+  .foot{
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
+    font-family:ui-monospace, 'Cascadia Code', Consolas, monospace;
+    font-size:12.5px; letter-spacing:1.5px; color:var(--dim);
+  }
+  .foot div:last-child{font-size:11.5px;}
+  .foot b{color:var(--txt);}
+  /* lightbox */
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:100; display:flex; align-items:center; justify-content:center; padding:16px;}
+  .lb-box{max-width:960px; width:100%;}
+  .lb-box img{width:100%; border-radius:14px; border:1px solid var(--line); display:block;}
+  .lb-cap{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:12px; flex-wrap:wrap;}
+  .lb-cap b{font-size:16px;}
+  .lb-cap span{color:var(--dim); font-size:13px; display:block; margin-top:2px;}
+  .lb-x{
+    width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--panel);
+    color:var(--txt); font-size:18px; cursor:pointer; flex:0 0 auto;
+  }
+  .hidden{display:none !important;}
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s;}
+  .reveal.in{opacity:1; transform:none;}
+  /* HP */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr; gap:28px;}
+    .grid-models{grid-template-columns:1fr 1fr;}
+    .strip{grid-template-columns:1fr 1fr;}
+    .strip div{border-left:none; border-top:1px solid var(--line);}
+    .strip div:nth-child(-n+2){border-top:none;}
+    .strip div:nth-child(even){border-left:1px solid var(--line);}
+  }
+  @media (max-width: 640px){
+    body{padding:0;}
+    h1{font-size:36px;}
+    h2{font-size:26px;}
+    section{padding:48px 0;}
+    nav.menu{display:none;}
+    .nav{gap:14px;}
+    .logo{font-size:16px;}
+    .hero{padding:40px 0 32px;}
+    .grid4, .grid-gal{grid-template-columns:1fr;}
+    .grid-models{grid-template-columns:1fr;}
+    .help-grid{grid-template-columns:1fr;}
+    .strip{grid-template-columns:1fr;}
+    .strip div{border-left:none; border-top:1px solid var(--line);}
+    .strip div:first-child{border-top:none;}
+    .checks{grid-template-columns:1fr 1fr;}
+    .hero-cta .btn{flex:1; justify-content:center;}
+    .foot{flex-direction:column; text-align:center; justify-content:center;}
+    .final{padding:48px 16px;}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#beranda"><span class="c1">GALERI</span> <span class="c2">PROYEK</span></a>
+      <nav class="menu">
+        <a href="#beranda">Beranda</a>
+        <a href="#projek">Projek</a>
+        <a href="#model">Model AI</a>
+        <a href="#contoh">Contoh</a>
+        <a href="#bantuan">Bantuan</a>
+      </nav>
+      <a class="btn btn-sm nav-cta" href="#projek">Lihat Projek</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge"><i></i> Galeri Proyek · Gratis · Tanpa Instalasi</div>
+        <h1>Semua web buatan kami, dalam <span class="grad">satu galeri.</span></h1>
+        <p class="sub">Empat web gratis buatan Nur Inasari &amp; Ardiyan — penerjemah visual novel, downloader video, auto clipper, sampai tool SEO channel. Buka di browser, langsung pakai, tanpa instal apa pun.</p>
+        <div class="checks">
+          <div><span>✓</span> 100% Gratis Dipakai</div>
+          <div><span>✓</span> Tanpa Instal Aplikasi</div>
+          <div><span>✓</span> Jalan di HP &amp; PC</div>
+          <div><span>✓</span> Dibuat Berdua</div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn" href="#projek">Lihat Projek</a>
+          <a class="btn btn-ghost" href="#model">Model AI</a>
+        </div>
+        <div class="proof">
+          <div class="avatars"><b>NI</b><b>AR</b><b>+</b></div>
+          <span><span class="stars">★★★★★</span> 4 web · 2 pembuat · 0 rupiah</span>
+        </div>
+      </div>
+      <div>
+        <div class="show" id="heroShow" title="Klik untuk membuka web ini">
+          <span class="chip-float">✦ POSTER PROJEK</span>
+          <img id="showImg" src="img/vntranslate.png" alt="Poster projek">
+          <button class="nav-arrow prev" id="showPrev" type="button" aria-label="Sebelumnya">‹</button>
+          <button class="nav-arrow next" id="showNext" type="button" aria-label="Berikutnya">›</button>
+          <div class="cap">
+            <div><b id="showName">VNTranslate</b><span id="showTag">Penerjemah script visual novel</span></div>
+          </div>
+          <div class="dots" id="showDots"></div>
+        </div>
+        <p class="hint" style="text-align:center;">Poster di atas berganti otomatis antar projek — klik untuk membuka webnya.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- PROJEK -->
+  <section id="projek">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Projek Kami</div>
+        <h2>Empat web, <span class="grad">satu galeri.</span></h2>
+        <p class="sub">Semua web di bawah ini gratis dipakai, jalan langsung di browser HP maupun PC — tanpa instal, tanpa akun.</p>
+      </div>
+      <div class="grid4">
+        <article class="card reveal">
+          <div class="shot" data-gal="0"><img src="img/vntranslate.png" alt="VNTranslate"><span class="tag">🌸 VISUAL NOVEL</span></div>
+          <div class="card-body">
+            <h3>VNTranslate<small>Penerjemah script visual novel</small></h3>
+            <ul class="feats">
+              <li>29 engine terdaftar, 11 didukung penuh</li>
+              <li>Terjemah massal per-file, progres tersimpan</li>
+              <li>Ekstrak arsip .rpa / .xp3 / .pfs di browser</li>
+              <li>Buat patch.xp3 langsung dari web</li>
+            </ul>
+            <div class="chips"><span class="chip ai">Groq</span><span class="chip ai">Gemini</span><span class="chip ai">Claude</span><span class="chip ai">DeepL</span><span class="chip ai">MyMemory</span><span class="chip ai">LibreTranslate</span></div>
+            <div class="card-cta">
+              <a class="btn btn-sm" href="https://arvanity.my.id" target="_blank" rel="noopener">Buka Web ↗</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-gal="0">Lihat Contoh</button>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="shot" data-gal="1"><img src="img/downloader.png" alt="Downloader Pribadi"><span class="tag">⬇️ DOWNLOADER</span></div>
+          <div class="card-body">
+            <h3>Downloader Pribadi<small>Unduh video &amp; audio</small></h3>
+            <ul class="feats">
+              <li>YouTube, Facebook, TikTok, Instagram</li>
+              <li>Video sampai 1080p, MP3 asli</li>
+              <li>Tanpa watermark, langsung unduh</li>
+              <li>Instance pribadi, tanpa antre</li>
+            </ul>
+            <div class="chips"><span class="chip">Cobalt v11</span><span class="chip">yt-dlp</span><span class="chip">FFmpeg</span></div>
+            <div class="card-cta">
+              <a class="btn btn-sm" href="https://downloader-pribadi.pages.dev" target="_blank" rel="noopener">Buka Web ↗</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-gal="1">Lihat Contoh</button>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="shot" data-gal="2"><img src="img/clipper.png" alt="Auto Clipper"><span class="tag">✂️ AUTO CLIPPER</span></div>
+          <div class="card-body">
+            <h3>Auto Clipper<small>Potong video jadi klip vertikal</small></h3>
+            <ul class="feats">
+              <li>Klip otomatis 9:16, siap TikTok / Reels / Shorts</li>
+              <li>Mode Campaign + metadata posting AI</li>
+              <li>Caption, watermark &amp; Smart Face Tracking</li>
+              <li>Tema + maskot, editor crop visual</li>
+            </ul>
+            <div class="chips"><span class="chip ai">Gemini</span><span class="chip ai">Groq Whisper</span></div>
+            <div class="card-cta">
+              <a class="btn btn-sm" href="https://cliperiya.web.id" target="_blank" rel="noopener">Buka Web ↗</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-gal="2">Lihat Contoh</button>
+            </div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="shot" data-gal="3"><img src="img/channelseo.png" alt="Channel SEO"><span class="tag">📈 CHANNEL SEO</span></div>
+          <div class="card-body">
+            <h3>Channel SEO<small>Intip channel YouTube</small></h3>
+            <ul class="feats">
+              <li>Statistik channel: subs, views, total video</li>
+              <li>Avatar Studio + Bio Generator AI</li>
+              <li>AI Prompt Finder, 73 bahasa</li>
+              <li>Hashtag &amp; Midjourney prompt</li>
+            </ul>
+            <div class="chips"><span class="chip ai">Gemini</span><span class="chip">YouTube Data API</span></div>
+            <div class="card-cta">
+              <a class="btn btn-sm" href="https://channel-seo.pages.dev" target="_blank" rel="noopener">Buka Web ↗</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-gal="3">Lihat Contoh</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL AI -->
+  <section id="model" style="background:var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Semua Model AI</div>
+        <h2>Satu galeri, <span class="grad">banyak model AI.</span></h2>
+        <p class="sub">Tiap web memakai model AI yang paling pas untuk tugasnya — dari terjemahan kilat sampai penulisan bio dan prompt gambar.</p>
+      </div>
+      <div class="grid-models">
+        <div class="mcard reveal"><div class="m-ic">⚡</div><h3>Groq</h3><div class="m-cat">LLM · Terjemahan kilat</div><p>Model Llama yang menjawab dalam hitungan detik — mesin utama terjemahan massal VNTranslate.</p><div class="used">Dipakai di: <b>VNTranslate</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">✦</div><h3>Gemini 2.5 Flash</h3><div class="m-cat">Multimodal · Serba bisa</div><p>Melihat gambar &amp; video, menulis bio, metadata campaign, dan prompt — satu model untuk banyak tugas.</p><div class="used">Dipakai di: <b>VNTranslate, Auto Clipper, Channel SEO</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">🧠</div><h3>Claude</h3><div class="m-cat">LLM · Terjemahan bernuansa</div><p>Terjemahan yang menjaga nada dan gaya bahasa asli — pilihan saat hasil perlu terasa natural.</p><div class="used">Dipakai di: <b>VNTranslate</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">🌐</div><h3>DeepL</h3><div class="m-cat">Terjemahan · Akurat</div><p>Terjemahan berkualitas tinggi untuk banyak bahasa, dengan kuota gratis bulanan.</p><div class="used">Dipakai di: <b>VNTranslate</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">📖</div><h3>MyMemory</h3><div class="m-cat">Terjemahan · Gratis</div><p>Mesin terjemahan gratis berbasis memori terjemahan komunitas.</p><div class="used">Dipakai di: <b>VNTranslate</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">🔓</div><h3>LibreTranslate</h3><div class="m-cat">Terjemahan · Open-source</div><p>Mesin terjemahan open-source yang bisa jalan sendiri, tanpa kunci API.</p><div class="used">Dipakai di: <b>VNTranslate</b></div></div>
+        <div class="mcard reveal"><div class="m-ic">🎙️</div><h3>Whisper</h3><div class="m-cat">Audio · Transkripsi</div><p>Mengubah suara video menjadi teks transkrip — dasar caption dan pencarian momen klip.</p><div class="used">Dipakai di: <b>Auto Clipper</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANFAAT -->
+  <section style="padding:48px 0;">
+    <div class="wrap">
+      <div class="strip reveal">
+        <div><div class="s-ic">🎁</div><b>Gratis</b><span>Semua web gratis dipakai</span></div>
+        <div><div class="s-ic">🌐</div><b>Tanpa Instalasi</b><span>Buka di browser, langsung jalan</span></div>
+        <div><div class="s-ic">📱</div><b>Jalan di HP</b><span>HP maupun PC, tanpa PC khusus</span></div>
+        <div><div class="s-ic">⚡</div><b>Cepat</b><span>Proses langsung, tanpa antre</span></div>
+        <div><div class="s-ic">🤝</div><b>Dibuat Berdua</b><span>Oleh Nur Inasari &amp; Ardiyan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTOH -->
+  <section id="contoh" style="padding-top:24px;">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Contoh</div>
+        <h2>Lihat tampilan <span class="grad">tiap web.</span></h2>
+        <p class="sub">Tangkapan layar asli dari keempat web — klik untuk memperbesar.</p>
+      </div>
+      <div class="grid-gal">
+        <div class="gal reveal" data-gal="0"><img src="img/vntranslate.png" alt="VNTranslate"><div class="cap">VNTranslate<span>arvanity.my.id</span></div></div>
+        <div class="gal reveal" data-gal="1"><img src="img/downloader.png" alt="Downloader Pribadi"><div class="cap">Downloader Pribadi<span>downloader-pribadi.pages.dev</span></div></div>
+        <div class="gal reveal" data-gal="2"><img src="img/clipper.png" alt="Auto Clipper"><div class="cap">Auto Clipper<span>cliperiya.web.id</span></div></div>
+        <div class="gal reveal" data-gal="3"><img src="img/channelseo.png" alt="Channel SEO"><div class="cap">Channel SEO<span>channel-seo.pages.dev</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANTUAN -->
+  <section id="bantuan" style="background:var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Bantuan</div>
+        <h2>Kritik &amp; <span class="grad">saran.</span></h2>
+        <p class="sub">Menemukan bug, punya masukan, atau mau request fitur? Kirim lewat form ini — pesannya akan dibuka lewat aplikasi email kamu ke Gmail kami.</p>
+      </div>
+      <div class="help-grid">
+        <div class="faq reveal">
+          <details open>
+            <summary>Apakah semua web di galeri ini gratis?</summary>
+            <p>Ya, keempat web gratis dipakai. Tidak ada biaya langganan dan tidak ada fitur yang dikunci di balik pembayaran.</p>
+          </details>
+          <details>
+            <summary>Apakah perlu instal aplikasi?</summary>
+            <p>Tidak. Semua web jalan langsung di browser HP maupun PC — buka linknya, langsung pakai.</p>
+          </details>
+          <details>
+            <summary>Apakah data &amp; API key saya aman?</summary>
+            <p>API key (mis. Groq, Gemini, YouTube) hanya tersimpan di browser kamu masing-masing dan tidak pernah dikirim ke server kami. Kami tidak menyimpan file atau data pribadi kamu.</p>
+          </details>
+          <details>
+            <summary>Web mana yang paling cocok untuk saya?</summary>
+            <p>Terjemah game visual novel → VNTranslate. Unduh video/audio → Downloader Pribadi. Bikin klip vertikal → Auto Clipper. Riset channel YouTube → Channel SEO.</p>
+          </details>
+        </div>
+        <form id="fbForm" class="reveal">
+          <div class="fld">
+            <label for="fbName">Nama</label>
+            <input type="text" id="fbName" placeholder="Nama kamu" required>
+          </div>
+          <div class="fld">
+            <label for="fbEmail">Email (opsional)</label>
+            <input type="email" id="fbEmail" placeholder="email@contoh.com">
+          </div>
+          <div class="fld">
+            <label for="fbCat">Kategori</label>
+            <select id="fbCat">
+              <option>Kritik</option>
+              <option>Saran</option>
+              <option>Laporan Bug</option>
+              <option>Request Fitur</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label for="fbMsg">Pesan</label>
+            <textarea id="fbMsg" placeholder="Tulis kritik, saran, atau laporan bug di sini…" required></textarea>
+          </div>
+          <button class="btn" type="submit" style="width:100%;">✉️ Kirim via Gmail</button>
+          <div class="msg hidden" id="fbNote"></div>
+          <p class="hint">Tombol kirim akan membuka aplikasi email kamu dengan pesan yang sudah terisi, ditujukan ke Gmail kami. Tidak ada data yang tersimpan di web ini.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA AKHIR -->
+  <section>
+    <div class="wrap">
+      <div class="final reveal">
+        <div class="eyebrow">Galeri Inas &amp; Ardiyan</div>
+        <h2>Mulai jelajahi <span class="grad">web kami.</span></h2>
+        <p class="sub">Empat web gratis, satu galeri. Pilih yang kamu butuhkan dan langsung pakai — tanpa instal, tanpa ribet.</p>
+        <a class="btn" href="#projek">Lihat Projek</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot">
+      <div><b>© 2026 Nur Inasari &amp; Ardiyan.</b> All rights reserved.</div>
+      <div>Powered by <b>Nur Inasari &amp; Ardiyan</b></div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lb hidden" id="lb">
+    <div class="lb-box">
+      <img id="lbImg" src="" alt="">
+      <div class="lb-cap">
+        <div><b id="lbName">—</b><span id="lbUrl">—</span></div>
+        <div style="display:flex; gap:8px;">
+          <a class="btn btn-sm" id="lbOpen" href="#" target="_blank" rel="noopener">Buka Web ↗</a>
+          <button class="lb-x" id="lbClose" type="button" aria-label="Tutup">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const GAL_VER = "1.7";
+const $ = (id) => document.getElementById(id);
+const PROJECTS = [
+  { name: "VNTranslate", tag: "Penerjemah script visual novel", img: "img/vntranslate.png", url: "https://arvanity.my.id" },
+  { name: "Downloader Pribadi", tag: "Unduh video & audio", img: "img/downloader.png", url: "https://downloader-pribadi.pages.dev" },
+  { name: "Auto Clipper", tag: "Potong video jadi klip vertikal", img: "img/clipper.png", url: "https://cliperiya.web.id" },
+  { name: "Channel SEO", tag: "Intip channel YouTube", img: "img/channelseo.png", url: "https://channel-seo.pages.dev" }
+];
+
+// ---------- nav aktif mengikuti scroll (scrollspy) ----------
+const navLinks = [...document.querySelectorAll("nav.menu a")];
+const navSecs = navLinks.map((a) => document.querySelector(a.getAttribute("href")));
+function setActiveNav(id) {
+  navLinks.forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + id));
+}
+navLinks.forEach((a) => a.addEventListener("click", () => setActiveNav(a.getAttribute("href").slice(1))));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach((en) => { if (en.isIntersecting) setActiveNav(en.target.id); });
+}, { rootMargin: "-30% 0px -60% 0px" });
+navSecs.forEach((s) => s && spy.observe(s));
+setActiveNav("beranda");
+
+// ---------- ticker ----------
+(function () {
+  const items = ["VNTranslate", "Downloader Pribadi", "Auto Clipper", "Channel SEO", "100% Gratis", "Tanpa Instalasi", "Jalan di HP & PC", "Dibuat Berdua"];
+  const half = items.map((t) => "<span><b>✦</b> " + t + "</span>").join("");
+  $("tickerTrack").innerHTML = half + half;
+})();
+
+// ---------- slideshow poster (selalu switch projek) ----------
+let showIdx = 0, showTimer = null;
+const dotsBox = $("showDots");
+PROJECTS.forEach((_, i) => {
+  const d = document.createElement("i");
+  d.addEventListener("click", (e) => { e.stopPropagation(); showGo(i, true); });
+  dotsBox.appendChild(d);
+});
+function showRender() {
+  const p = PROJECTS[showIdx];
+  const img = $("showImg");
+  img.style.opacity = 0;
+  const pre = new Image();
+  pre.onload = () => { img.src = p.img; img.alt = p.name; img.style.opacity = 1; };
+  pre.onerror = () => { img.src = p.img; img.style.opacity = 1; };
+  pre.src = p.img;
+  $("showName").textContent = p.name;
+  $("showTag").textContent = p.tag;
+  dotsBox.querySelectorAll("i").forEach((d, i) => d.classList.toggle("on", i === showIdx));
+}
+function showGo(i, manual) {
+  showIdx = (i + PROJECTS.length) % PROJECTS.length;
+  showRender();
+  if (manual) showRestart();
+}
+function showRestart() {
+  clearInterval(showTimer);
+  showTimer = setInterval(() => showGo(showIdx + 1), 4500);
+}
+$("showPrev").addEventListener("click", (e) => { e.stopPropagation(); showGo(showIdx - 1, true); });
+$("showNext").addEventListener("click", (e) => { e.stopPropagation(); showGo(showIdx + 1, true); });
+$("heroShow").addEventListener("click", () => window.open(PROJECTS[showIdx].url, "_blank", "noopener"));
+$("heroShow").addEventListener("mouseenter", () => clearInterval(showTimer));
+$("heroShow").addEventListener("mouseleave", showRestart);
+showRender();
+showRestart();
+
+// ---------- lightbox contoh ----------
+function openLb(i) {
+  const p = PROJECTS[i];
+  $("lbImg").src = p.img;
+  $("lbImg").alt = p.name;
+  $("lbName").textContent = p.name + " — " + p.tag;
+  $("lbUrl").textContent = p.url.replace(/^https:\/\//, "");
+  $("lbOpen").href = p.url;
+  $("lb").classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+function closeLb() {
+  $("lb").classList.add("hidden");
+  document.body.style.overflow = "";
+}
+document.querySelectorAll("[data-gal]").forEach((el) => {
+  el.addEventListener("click", () => openLb(Number(el.dataset.gal)));
+});
+$("lbClose").addEventListener("click", closeLb);
+$("lb").addEventListener("click", (e) => { if (e.target === $("lb")) closeLb(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
+
+// ---------- form kritik & saran (via Gmail) ----------
+$("fbForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("fbName").value.trim();
+  const email = $("fbEmail").value.trim();
+  const cat = $("fbCat").value;
+  const msg = $("fbMsg").value.trim();
+  if (!name || !msg) return;
+  const subject = "[Galeri] " + cat + " — " + name;
+  const body = "Nama: " + name + "\n" + (email ? "Email: " + email + "\n" : "") + "Kategori: " + cat + "\n\n" + msg;
+  window.location.href = "mailto:esedswesrs@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  const n = $("fbNote");
+  n.textContent = "Aplikasi email kamu dibuka dengan pesan yang sudah terisi — tekan Kirim di sana.";
+  n.className = "msg ok";
+  n.classList.remove("hidden");
+});
+
+// ---------- reveal saat scroll ----------
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
