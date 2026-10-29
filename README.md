@@ -10,9 +10,9 @@ Showcase keempat web buatan Nur Inasari & Ardiyan — tampilannya mengikuti clar
 ## Proyek yang dipajang
 
 - **VNTranslate** — https://arvanity.my.id — penerjemah script visual novel (Ren'Py, Kirikiri, RealLive, dll) dengan MT gratis (Groq, Gemini, DeepL, MyMemory, LibreTranslate).
-- **Downloader Pribadi** — https://downloader-pribadi.pages.dev — downloader video/musik via cobalt + jembatan yt-dlp.
+- **Downloader Pribadi** — https://downloading.my.id — downloader video/musik via cobalt + jembatan yt-dlp.
 - **Auto Clipper** — https://cliperiya.web.id — auto clipper video (YouTube, Facebook, TikTok, Instagram) + Mode Campaign.
-- **Channel SEO** — https://channel-seo.pages.dev — tool SEO channel YouTube + AI Prompt Finder.
+- **Channel SEO** — https://channelseo.my.id — tool SEO channel YouTube + AI Prompt Finder.
 
 ## Isi repo
 
